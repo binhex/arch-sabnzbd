@@ -7,7 +7,10 @@ MAINTAINER binhex
 # update package databases from the server
 RUN pacman -Sy --noconfirm
 
-# run packer to install madsonic and pre-reqs
+# install any pre-reqs for application
+RUN pacman -S python2-pyopenssl --noconfirm
+
+# run packer to install application
 RUN packer -S sabnzbd --noconfirm
 
 # docker settings
