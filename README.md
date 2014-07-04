@@ -14,7 +14,7 @@ docker pull binhex/arch-sabnzbd
 **Run container**
 
 ```
-docker run -d -p 8080:8080 -p 8090:8090 --name=<container name> -v <path for data files>:/data -v <path for config files>:/config -v /etc/localtime:/etc/localtime:ro binhex/arch-sabnzbd
+docker run -d -p 8080:8080 -p 8090:8090 --name=<container name> -v <path for media files>:/media -v <path for config files>:/config -v /etc/localtime:/etc/localtime:ro binhex/arch-sabnzbd
 ```
 
 Please replace all user variables in the above command defined by <> with the correct values.

@@ -16,11 +16,11 @@ RUN packer -S sabnzbd --noconfirm
 # docker settings
 #################
 
-# map /config to host defined config to store logs, config etc
+# map /config to host defined config path (used to store configuration from app)
 VOLUME /config
 
-# map /data to host defined data which contains data to index
-VOLUME /data
+# map /media to host defined media path (used to read/write to media library)
+VOLUME /media
 
 # expose port for http
 EXPOSE 8080
