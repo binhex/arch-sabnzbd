@@ -37,16 +37,13 @@ RUN chown -R nobody:users /opt/sabnzbd
 # set permissions
 RUN chmod -R 775 /opt/sabnzbd
 
-# add supervisor
-################
+# add conf file
+###############
 
 ADD sabnzbd.conf /etc/supervisor/conf.d/sabnzbd.conf
 
-# run application
-#################
-
-# set process to run as user "nobody" group "users"
-USER nobody:users
+# run supervisor
+################
 
 # run supervisor
 CMD ["supervisord", "-c", "/etc/supervisor.conf", "-n"]
