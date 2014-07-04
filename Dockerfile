@@ -4,7 +4,7 @@ MAINTAINER binhex
 # install application
 #####################
 
-# update package databases from the server
+# update package databases for arch
 RUN pacman -Sy --noconfirm
 
 # install any pre-reqs for application
@@ -37,11 +37,16 @@ RUN chown -R nobody:users /opt/sabnzbd
 # set permissions
 RUN chmod -R 775 /opt/sabnzbd
 
+# add supervisor
+################
+
+ADD sabnzbd.conf /etc/supervisor/conf.d/sabnzbd.conf
+
 # run application
 #################
 
 # set process to run as user "nobody" group "users"
 USER nobody:users
 
-# run script with home dir, host ip and port specified (http and https)
-CMD ["/opt/sabnzbd/SABnzbd.py", "--config-file", "/config", "--server", "0.0.0.0:8080", "--https", "8090"]
+# run supervisor
+CMD ["supervisord", "-c", "/etc/supervisor.conf", "-n"]
