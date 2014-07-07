@@ -19,8 +19,8 @@ RUN packer -S sabnzbd --noconfirm
 # map /config to host defined config path (used to store configuration from app)
 VOLUME /config
 
-# map /media to host defined media path (used to read/write to media library)
-VOLUME /media
+# map /data to host defined data path (used to store data from app)
+VOLUME /data
 
 # expose port for http
 EXPOSE 8080
