@@ -42,6 +42,15 @@ RUN chmod -R 775 /opt/sabnzbd
 
 ADD sabnzbd.conf /etc/supervisor/conf.d/sabnzbd.conf
 
+# cleanup
+#########
+
+# completely empty pacman cache folder
+RUN pacman -Scc --noconfirm
+
+# remove temporary files
+RUN rm -rf /tmp/*
+
 # run supervisor
 ################
 
