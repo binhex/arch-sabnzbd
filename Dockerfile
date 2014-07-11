@@ -8,7 +8,7 @@ MAINTAINER binhex
 RUN pacman -Sy --noconfirm
 
 # install any pre-reqs for application
-RUN pacman -S python2-pyopenssl --noconfirm
+RUN pacman -S python2-pyopenssl python2-feedparser --noconfirm
 
 # run packer to install application
 RUN packer -S sabnzbd --noconfirm
