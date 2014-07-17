@@ -1,9 +1,9 @@
-sabnzbd
+SABnzbd
 =======
 
-Latest stable SABnzbd+ release from Arch Linux AUR using Packer to compile.
+SABnzbd - http://sabnzbd.org/
 
-This is a Dockerfile for SABnzbd+ - http://sabnzbd.org/
+Latest stable SABnzbd release from Arch Linux AUR using Packer to compile.
 
 **Pull image**
 
