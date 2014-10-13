@@ -1,17 +1,35 @@
 FROM binhex/arch-base:2014100603
 MAINTAINER binhex
 
-# install application
-#####################
+# additional files
+##################
 
-# update package databases for arch
-RUN pacman -Sy --noconfirm
+# download packer from aur
+ADD https://aur.archlinux.org/packages/pa/packer/packer.tar.gz /root/packer.tar.gz
 
-# install any pre-reqs for application
-RUN pacman -S python2-pyopenssl python2-feedparser --noconfirm
+# add supervisor conf file for app
+ADD sabnzbd.conf /etc/supervisor/conf.d/sabnzbd.conf
 
-# run packer to install application
-RUN packer -S sabnzbd --noconfirm
+# install app
+#############
+
+# install base devel, install app using packer, set perms, cleanup
+RUN pacman -Sy --noconfirm && \
+	pacman -S --needed base-devel python2-pyopenssl python2-feedparser --noconfirm && \
+	cd /root && \
+	tar -xzf packer.tar.gz && \
+	cd /root/packer && \
+	makepkg -s --asroot --noconfirm && \
+	pacman -U /root/packer/packer*.tar.xz --noconfirm && \
+	packer -S sabnzbd --noconfirm && \
+	pacman -Ru base-devel --noconfirm && \
+	pacman -Scc --noconfirm && \
+	chown -R nobody:users /opt/sabnzbd && \
+	chmod -R 775 /opt/sabnzbd && \	
+	rm -rf /archlinux/usr/share/locale && \
+	rm -rf /archlinux/usr/share/man && \
+	rm -rf /root/* && \
+	rm -rf /tmp/*
 
 # docker settings
 #################
@@ -27,32 +45,6 @@ EXPOSE 8080
 
 # expose port for https
 EXPOSE 8090
-
-# set permissions
-#################
-
-# change owner
-RUN chown -R nobody:users /opt/sabnzbd
-
-# set permissions
-RUN chmod -R 775 /opt/sabnzbd
-
-# add conf file
-###############
-
-ADD sabnzbd.conf /etc/supervisor/conf.d/sabnzbd.conf
-
-# cleanup
-#########
-
-# remove unneeded apps from base-devel group - used for AUR package compilation
-RUN pacman -Ru base-devel --noconfirm
-
-# completely empty pacman cache folder
-RUN pacman -Scc --noconfirm
-
-# remove temporary files
-RUN rm -rf /tmp/*
 
 # run supervisor
 ################
