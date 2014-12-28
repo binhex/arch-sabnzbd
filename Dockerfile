@@ -15,7 +15,7 @@ ADD sabnzbd.conf /etc/supervisor/conf.d/sabnzbd.conf
 
 # install base devel, install app using packer, set perms, cleanup
 RUN pacman -Sy --noconfirm && \
-	pacman -S --needed base-devel python2-pyopenssl python2-feedparser --noconfirm && \
+	pacman -S --needed base-devel python2-pyopenssl python2-feedparser par2cmdline-tbb --noconfirm && \
 	cd /root && \
 	tar -xzf packer.tar.gz && \
 	cd /root/packer && \
