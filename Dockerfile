@@ -27,6 +27,7 @@ RUN pacman -Sy --noconfirm && \
 	chmod -R 775 /opt/sabnzbd && \	
 	pacman -Ru packer base-devel git --noconfirm && \
 	yes|pacman -Scc && \
+	userdel -r makepkg-user && \
 	rm -rf /usr/share/locale/* && \
 	rm -rf /usr/share/man/* && \
 	rm -rf /root/* && \
