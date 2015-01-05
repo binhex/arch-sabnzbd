@@ -25,10 +25,10 @@ RUN pacman -Sy --noconfirm && \
 	su -c "packer -S sabnzbd --noconfirm" - makepkg_user && \
 	chown -R nobody:users /opt/sabnzbd && \
 	chmod -R 775 /opt/sabnzbd && \	
-	pacman -Ru base-devel --noconfirm && \
+	pacman -Ru packer base-devel git --noconfirm && \
 	yes|pacman -Scc && \
-	rm -rf /archlinux/usr/share/locale && \
-	rm -rf /archlinux/usr/share/man && \
+	rm -rf /usr/share/locale && \
+	rm -rf /usr/share/man && \
 	rm -rf /root/* && \
 	rm -rf /tmp/*
 
