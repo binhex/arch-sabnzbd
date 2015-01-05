@@ -26,7 +26,7 @@ RUN pacman -Sy --noconfirm && \
 	chown -R nobody:users /opt/sabnzbd && \
 	chmod -R 775 /opt/sabnzbd && \	
 	pacman -Ru base-devel --noconfirm && \
-	pacman -Scc --noconfirm && \	
+	yes|pacman -Scc && \
 	rm -rf /archlinux/usr/share/locale && \
 	rm -rf /archlinux/usr/share/man && \
 	rm -rf /root/* && \
