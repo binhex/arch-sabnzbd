@@ -4,7 +4,7 @@
 pacman_packages="base-devel"
 
 # define packer packages
-packer_packages="sabnzbd"
+packer_packages="par2cmdline-tbb sabnzbd"
 
 # install required pre-reqs for makepkg
 pacman -S --needed $pacman_packages --noconfirm
