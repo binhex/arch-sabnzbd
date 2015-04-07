@@ -28,7 +28,7 @@ pacman -U /home/makepkg-user/packer/packer*.tar.xz --noconfirm
 su -c "packer -S sabnzbd --noconfirm" - makepkg-user
 
 # uninstall par2cmdline
-pacman -R par2cmdline --noconfirm
+pacman -Rdd par2cmdline --noconfirm
 
 # install multi-threaded par2cmdline
 su -c "packer -S par2cmdline-tbb --noconfirm" - makepkg-user
