@@ -25,7 +25,13 @@ su -c "cd /home/makepkg-user/packer && makepkg -s --noconfirm --needed" - makepk
 pacman -U /home/makepkg-user/packer/packer*.tar.xz --noconfirm
 
 # install app from aur
-su -c "packer -S $packer_packages --ignore par2cmdline --noconfirm" - makepkg-user
+su -c "packer -S sabnzbd --noconfirm" - makepkg-user
+
+# uninstall par2cmdline
+pacman -R par2cmdline --noconfirm
+
+# install multi-threaded par2cmdline
+su -c "packer -S par2cmdline-tbb --noconfirm" - makepkg-user
 
 # remove base devel tools and packer
 pacman -Ru packer base-devel git --noconfirm
