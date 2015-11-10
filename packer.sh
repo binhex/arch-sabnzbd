@@ -15,8 +15,8 @@ pacman -S --needed $pacman_packages --noconfirm
 # create "makepkg-user" user for makepkg
 useradd -m -g wheel -s /bin/bash makepkg-user
 echo -e "makepkg-password\nmakepkg-password" | passwd makepkg-user
-echo "%wheel      ALL=(ALL) ALL" >> /etc/sudoers
-echo "Defaults:makepkg-user      !authenticate" >> /etc/sudoers
+echo "%wheel ALL=(ALL:ALL) ALL" | (EDITOR="tee -a" visudo)
+echo "Defaults:makepkg-user !authenticate" | (EDITOR="tee -a" visudo)
 
 # download packer
 curl -o /home/makepkg-user/packer.tar.gz https://aur.archlinux.org/cgit/aur.git/snapshot/packer.tar.gz
