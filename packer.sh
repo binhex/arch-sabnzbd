@@ -27,7 +27,7 @@ cd /home/makepkg-user
 su -c "tar -xvf packer.tar.gz" - makepkg-user
 
 # install packer
-su -c "cd /home/makepkg-user/packer && sudo makepkg -s --noconfirm --needed" - makepkg-user
+su -c "cd /home/makepkg-user/packer && makepkg -s --noconfirm --needed" - makepkg-user
 pacman -U /home/makepkg-user/packer/packer*.tar.xz --noconfirm
 
 # install app using packer
