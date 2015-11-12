@@ -12,6 +12,10 @@ packer_packages="sabnzbd"
 # install required pre-reqs for makepkg
 pacman -S --needed $pacman_packages --noconfirm
 
+# force downgrade of sudo as 1.8.15 has issues with docker
+curl -o /tmp/sudo-1.8.14.p3-2-x86_64.pkg.tar.xz -L https://github.com/binhex/arch-packages/releases/download/sudo-1.8.14.p3/sudo-1.8.14.p3-2-x86_64.pkg.tar.xz
+pacman -U /tmp/sudo-1.8.14.p3-2-x86_64.pkg.tar.xz --noconfirm
+
 # create "makepkg-user" user for makepkg
 useradd -m -s /bin/bash makepkg-user
 echo -e "makepkg-password\nmakepkg-password" | passwd makepkg-user
@@ -23,7 +27,7 @@ cd /home/makepkg-user
 su -c "tar -xvf packer.tar.gz" - makepkg-user
 
 # install packer
-su -c "cd /home/makepkg-user/packer && makepkg -s --noconfirm --needed" - makepkg-user
+su -c "cd /home/makepkg-user/packer && sudo makepkg -s --noconfirm --needed" - makepkg-user
 pacman -U /home/makepkg-user/packer/packer*.tar.xz --noconfirm
 
 # install app using packer
