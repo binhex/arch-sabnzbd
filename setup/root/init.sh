@@ -38,8 +38,8 @@ else
 fi
 
 # set permissions inside container
-chown -R "${UID}":"${GID}" /opt/sabnzbd
-chmod -R 775 /opt/sabnzbd
+chown -R "${UID}":"${GID}" /opt/sabnzbd /home/nobody
+chmod -R 775 /opt/sabnzbd /home/nobody
 
 echo "[info] Starting Supervisor..."
 
