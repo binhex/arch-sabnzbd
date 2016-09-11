@@ -41,4 +41,4 @@ chmod -R 775 /opt/sabnzbd /home/nobody
 echo "[info] Starting Supervisor..."
 
 # run supervisor
-"/usr/bin/supervisord" -c "/etc/supervisor.conf" -n
+exec /usr/bin/supervisord -c /etc/supervisor.conf -n
