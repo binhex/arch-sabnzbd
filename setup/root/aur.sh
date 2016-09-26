@@ -7,7 +7,7 @@ set -e
 aur_helper="packer"
 
 # define aur packages
-aur_packages="sabnzbd"
+aur_packages="par2cmdline-tbb sabnzbd"
 
 # create "makepkg-user" user for makepkg
 useradd -m -s /bin/bash makepkg-user
