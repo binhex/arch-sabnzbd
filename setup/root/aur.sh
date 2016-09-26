@@ -7,7 +7,7 @@ set -e
 aur_helper="packer"
 
 # define aur packages
-aur_packages="par2cmdline-tbb sabnzbd"
+aur_packages="sabnzbd"
 
 # create "makepkg-user" user for makepkg
 useradd -m -s /bin/bash makepkg-user
@@ -25,6 +25,12 @@ pacman -U /home/makepkg-user/$aur_helper/packer*.pkg.tar.xz --noconfirm
 
 # install app using aur helper
 su -c "$aur_helper -S $aur_packages --noconfirm" - makepkg-user
+
+# remove single threaded par2 (dependency of sabnzbd)
+pacman -Rs par2cmdline --noconfirm
+
+# install par2 multithreaded first using packer (cannot bundle with sabnzbd as order means arch single threaded par2 gets installed first)
+su -c "$aur_helper -S par2cmdline-tbb --noconfirm" - makepkg-user
 
 # remove base devel excluding useful core packages
 pacman -Ru $(pacman -Qgq base-devel | grep -v pacman | grep -v sed | grep -v grep | grep -v gzip) --noconfirm
