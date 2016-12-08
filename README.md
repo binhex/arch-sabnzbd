@@ -8,7 +8,7 @@ SABnzbd is an Open Source Binary Newsreader written in Python. SABnzbd makes Use
 
 **Build notes**
 
-Latest stable SABnzbd release from Arch Linux AUR using Packer to compile.
+Latest stable SABnzbd release from Arch Linux AUR.
 
 **Usage**
 ```
