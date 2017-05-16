@@ -5,10 +5,10 @@ MAINTAINER binhex
 ##################
 
 # add supervisor conf file for app
-ADD setup/*.conf /etc/supervisor/conf.d/
+ADD build/*.conf /etc/supervisor/conf.d/
 
 # add install and packer bash script
-ADD setup/root/*.sh /root/
+ADD build/root/*.sh /root/
 
 # install app
 #############
