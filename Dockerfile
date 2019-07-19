@@ -36,4 +36,4 @@ EXPOSE 8090
 #################
 
 # run script to set uid, gid and permissions
-CMD ["/bin/bash", "/root/init.sh"]
+CMD ["/bin/bash", "/usr/local/bin/init.sh"]
