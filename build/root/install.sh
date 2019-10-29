@@ -29,9 +29,6 @@ fi
 # aur packages
 ####
 
-# install after compile and install missing dependencies
-makepkg_options="--install --syncdeps"
-
 # define aur packages
 aur_packages="python2-sabyenc par2cmdline-tbb sabnzbd"
 
