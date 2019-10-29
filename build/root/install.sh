@@ -30,10 +30,10 @@ fi
 ####
 
 # define aur packages
-aur_packages="par2cmdline-tbb sabnzbd"
+aur_packages="python2-sabyenc par2cmdline-tbb sabnzbd"
 
 # call aur install script (arch user repo)
-source aur.sh
+source aur2.sh
 
 # container perms
 ####
