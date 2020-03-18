@@ -16,7 +16,7 @@ docker run -d \
     -p 8080:8080 \
     -p 8090:8090 \
     --name=<container name> \
-    -v <path for media files>:/media \
+    -v <path for data files>:/data \
     -v <path for config files>:/config \
     -v /etc/localtime:/etc/localtime:ro \
     -e UMASK=<umask for created files> \
@@ -37,7 +37,7 @@ docker run -d \
     -p 8080:8080 \
     -p 8090:8090 \
     --name=SABnzbd \
-    -v /media/movies:/media \
+    -v /root/docker/data:/data \
     -v /apps/docker/sabnzbd:/config \
     -v /etc/localtime:/etc/localtime:ro \
     -e UMASK=000 \
