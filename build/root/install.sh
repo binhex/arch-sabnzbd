@@ -34,8 +34,11 @@ fi
 # pacman packages
 ####
 
+# call pacman db and package updater script
+source upd.sh
+
 # define pacman packages
-pacman_packages="git python2 python2-pyopenssl python2-feedparser p7zip python3"
+pacman_packages="git python2 python2-pyopenssl python2-feedparser python-notify2 p7zip python3"
 
 # install compiled packages using pacman
 if [[ ! -z "${pacman_packages}" ]]; then
