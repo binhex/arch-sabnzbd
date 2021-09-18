@@ -52,9 +52,16 @@ jobs:
           command: |
             host_port="9999"
             container_port="8080"
+            retry_count=30
             docker run -d --rm --net='bridge' -v /tmp/config:/config -v /tmp/data:/data -v /tmp/media:/media -p "${host_port}:${container_port}" ghcr.io/${{ github.repository }}:${{ github.event.inputs.tags }}
             docker ps
-            lsof -i:"${host_port}"
+            until lsof -i:"${host_port}"; do
+              retry_count=$((retry_count-1))
+			        if [ "${retry_count}" -eq "0" ]; then
+                exit 1
+              fi
+              sleep 1s
+            done
       - name: Push Docker image to Docker Hub
         uses: nick-invision/retry@v2.4.0
         with:
