@@ -50,9 +50,11 @@ jobs:
           max_attempts: 3
           retry_wait_seconds: 120
           command: |
-            test_port="8080"
-            docker run -d --rm --net='bridge' -p "9999:${test_port}" ghcr.io/${{ github.repository }}:${{ github.event.inputs.tags }}
+            host_port="9999"
+            container_port="8080"
+            docker run -d --rm --net='bridge' -v /tmp/config:/config -v /tmp/data:/data -v /tmp/media:/media -p "${host_port}:${container_port}" ghcr.io/${{ github.repository }}:${{ github.event.inputs.tags }}
             docker ps
+            lsof -i:"${host_port}"
       - name: Push Docker image to Docker Hub
         uses: nick-invision/retry@v2.4.0
         with:
