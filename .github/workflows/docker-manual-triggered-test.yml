@@ -54,7 +54,8 @@ jobs:
           until lsof -i:${host_port}; do
             retry_count=$((retry_count-1))
             if [ "${retry_count}" -eq "0" ]; then
-              echo "Test failed, showing logs..."
+              echo "Test failed, showing all open ports and log..."
+              timeout 10s lsof
               cat /tmp/config/supervisord.log
               exit 1
             fi
