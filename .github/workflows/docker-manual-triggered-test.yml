@@ -43,6 +43,16 @@ jobs:
               --tag ${{ github.repository }}:${{ github.event.inputs.tags }} \
               --tag ghcr.io/${{ github.repository }}:${{ github.event.inputs.tags }} \
               .
+      - name: TEST Create container and run tests
+        uses: nick-invision/retry@v2.4.0
+        with:
+          timeout_minutes: 5
+          max_attempts: 3
+          retry_wait_seconds: 120
+          command: |
+            test_port="8080"
+            docker run -d --rm --net='bridge' -p "9999:${test_port}" ghcr.io/${{ github.repository }}:${{ github.event.inputs.tags }}
+            docker ps
       - name: Push Docker image to Docker Hub
         uses: nick-invision/retry@v2.4.0
         with:
