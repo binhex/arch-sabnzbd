@@ -43,7 +43,7 @@ jobs:
               --tag ${{ github.repository }}:${{ github.event.inputs.tags }} \
               --tag ghcr.io/${{ github.repository }}:${{ github.event.inputs.tags }} \
               .
-      - name: TEST Create container and run tests
+      - name: Run Smoke Tests
         shell: bash
         run: |
           host_port="9999"
@@ -54,13 +54,14 @@ jobs:
           until sudo lsof -i:${host_port}; do
             retry_count=$((retry_count-1))
             if [ "${retry_count}" -eq "0" ]; then
-              echo "Test failed, showing all open ports and log..."
+              echo "[FAILED] Showing open ports and log..."
               timeout 10s sudo lsof
-              cat /tmp/config/supervisord.log
+              cat '/tmp/config/supervisord.log'
               exit 1
             fi
             sleep 1s
           done
+          echo "[PASSED]"
       - name: Push Docker image to Docker Hub
         uses: nick-invision/retry@v2.4.0
         with:
