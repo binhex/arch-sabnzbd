@@ -47,8 +47,8 @@ jobs:
         shell: bash
         run: |
           host_port="9999"
-          container_port="8080"
-          retry_count=30
+          container_port="8090"
+          retry_count=60
           docker run -d --rm --net='bridge' -v /tmp/config:/config -v /tmp/data:/data -v /tmp/media:/media -p "${host_port}:${container_port}" ghcr.io/${{ github.repository }}:${{ github.event.inputs.tags }}
           docker ps
           until lsof -i:${host_port}; do
