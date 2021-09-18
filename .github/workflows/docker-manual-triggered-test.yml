@@ -51,9 +51,11 @@ jobs:
           retry_count=30
           docker run -d --rm --net='bridge' -v /tmp/config:/config -v /tmp/data:/data -v /tmp/media:/media -p "${host_port}:${container_port}" ghcr.io/${{ github.repository }}:${{ github.event.inputs.tags }}
           docker ps
-          until lsof -i:"${host_port}"; do
+          until lsof -i:${host_port}; do
             retry_count=$((retry_count-1))
             if [ "${retry_count}" -eq "0" ]; then
+              echo "Test failed, showing logs..."
+              cat /tmp/config/supervisord.log
               exit 1
             fi
             sleep 1s
