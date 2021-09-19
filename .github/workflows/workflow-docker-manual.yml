@@ -46,8 +46,8 @@ jobs:
       - name: Run Smoke Tests
         shell: bash
         run: |
-          local git_clone_scripts_dest="/tmp/scripts"
-          local git_clone_scripts_repo="https://github.com/binhex/scripts.git"
+          git_clone_scripts_dest="/tmp/scripts"
+          git_clone_scripts_repo="https://github.com/binhex/scripts.git"
 
           git clone "${git_clone_scripts_repo}" "${git_clone_scripts_dest}"
           "${git_clone_scripts_dest}/shell/arch/docker/testrunner.sh" --image-name "ghcr.io/${{ github.repository }}:${{ github.event.inputs.tags }}" --host-port '9999' --container-port '8090' --network-type 'bridge'
