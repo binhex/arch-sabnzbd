@@ -41,7 +41,7 @@ fi
 source upd.sh
 
 # define pacman packages
-pacman_packages="git python2 python2-pyopenssl python2-feedparser python-notify2 p7zip python3"
+pacman_packages="git python3 python-pyopenssl p7zip unrar unzip par2cmdline"
 
 # install compiled packages using pacman
 if [[ ! -z "${pacman_packages}" ]]; then
