@@ -57,6 +57,12 @@ aur_packages="sabnzbd"
 # call aur install script (arch user repo)
 source aur.sh
 
+# custom
+###
+
+# required as AOR package is out of date currently and sab currently requirs jaraco.context >= 4.1
+pip install jaraco.context
+
 # container perms
 ####
 
