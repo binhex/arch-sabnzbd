@@ -11,6 +11,9 @@ ADD build/*.conf /etc/supervisor/conf.d/
 # add install and packer bash script
 ADD build/root/*.sh /root/
 
+# add bash script to run app
+ADD run/nobody/*.sh /home/nobody/
+
 # get release tag name from build arg
 ARG release_tag_name
 
