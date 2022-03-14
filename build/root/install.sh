@@ -71,6 +71,9 @@ github.sh --install-path "${install_path}" --github-owner 'sabnzbd' --github-rep
 # use pip to install requirements as defined in requirements.txt
 pip.sh --install-path "${install_path}" --log-level 'WARN'
 
+# use pip to install nzb-notify requirements -- https://github.com/caronc/nzb-notify/blob/master/requirements.txt
+pip.sh --install-path "${install_path}" --pip-packages 'apprise setuptools pynzbget chardet six' --log-level 'WARN'
+
 # container perms
 ####
 
