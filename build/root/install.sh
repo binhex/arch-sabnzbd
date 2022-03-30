@@ -83,7 +83,7 @@ pip.sh --install-path "${install_path_nzbnotify}" --log-level 'WARN'
 ####
 
 # define comma separated list of paths
-install_paths="/usr/lib/sabnzbd,/home/nobody"
+install_paths="/usr/lib/sabnzbd,/usr/lib/nzbnotify,/home/nobody"
 
 # split comma separated string into list for install paths
 IFS=',' read -ra install_paths_list <<< "${install_paths}"
