@@ -38,8 +38,15 @@ mv /tmp/scripts-master/shell/arch/docker/*.sh /usr/local/bin/
 # call pacman db and package updater script
 source upd.sh
 
+# check arch as par2cmdline-turbo does not support arm64, thus use par2cmdline
+if [[ "${TARGETARCH}" == "arm64" ]]; then
+	par2cmdline="par2cmdline"
+else
+	par2cmdline=""
+fi
+
 # define pacman packages
-pacman_packages="git python python-pyopenssl p7zip unrar unzip"
+pacman_packages="git python python-pyopenssl p7zip unrar unzip ${par2cmdline}"
 
 # install compiled packages using pacman
 if [[ ! -z "${pacman_packages}" ]]; then
@@ -49,8 +56,13 @@ fi
 # aur packages
 ####
 
-# define aur packages
-aur_packages="par2cmdline-turbo"
+# check arch as par2cmdline-turbo does not support arm64
+if [[ "${TARGETARCH}" == "arm64" ]]; then
+	aur_packages=""
+else
+	# define aur packages
+	aur_packages="par2cmdline-turbo"
+fi
 
 # call aur install script (arch user repo)
 source aur.sh
