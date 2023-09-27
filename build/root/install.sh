@@ -39,7 +39,7 @@ mv /tmp/scripts-master/shell/arch/docker/*.sh /usr/local/bin/
 source upd.sh
 
 # define pacman packages
-pacman_packages="git python python-pyopenssl p7zip unrar unzip par2cmdline"
+pacman_packages="git python python-pyopenssl p7zip unrar unzip"
 
 # install compiled packages using pacman
 if [[ ! -z "${pacman_packages}" ]]; then
@@ -50,7 +50,7 @@ fi
 ####
 
 # define aur packages
-aur_packages=""
+aur_packages="par2cmdline-turbo"
 
 # call aur install script (arch user repo)
 source aur.sh
@@ -76,7 +76,7 @@ virtualenv_path="${install_path_sabnzbd}/venv"
 # use pip to install requirements for sabnzbd as defined in requirements.txt
 pip.sh --install-path "${install_path_sabnzbd}" --create-virtualenv 'yes' --virtualenv-path "${virtualenv_path}" --log-level 'WARN'
 
-# use pip to install requirements for nzbnotify as defined in requirements.txt, create modules in sabnz\bd virtualenv path
+# use pip to install requirements for nzbnotify as defined in requirements.txt, create modules in sabnzbd virtualenv path
 pip.sh --install-path "${install_path_nzbnotify}" --create-virtualenv 'yes' --virtualenv-path "${virtualenv_path}" --log-level 'WARN'
 
 # container perms
