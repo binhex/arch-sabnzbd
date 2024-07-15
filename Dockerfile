@@ -30,12 +30,6 @@ RUN chmod +x /root/*.sh && \
 # docker settings
 #################
 
-# expose port for http
-EXPOSE 8080
-
-# expose port for https
-EXPOSE 8090
-
 # set permissions
 #################
 
