@@ -49,7 +49,7 @@ else
 fi
 
 # define pacman packages
-pacman_packages="git python python-pyopenssl 7zip unrar unzip ${par2cmdline}"
+pacman_packages="git python python-pyopenssl unrar unzip ${par2cmdline}"
 
 # install compiled packages using pacman
 if [[ ! -z "${pacman_packages}" ]]; then
@@ -93,6 +93,16 @@ python.sh --requirements-path "${install_path_sabnzbd}" --create-virtualenv 'yes
 
 # use pip to install requirements for nzbnotify as defined in requirements.txt, create modules in sabnzbd virtualenv path
 python.sh --requirements-path "${install_path_nzbnotify}" --create-virtualenv 'yes' --virtualenv-path "${virtualenv_path}"
+
+# custom
+####
+
+# required as there is no arm64 package for 7zip at present 2025-04-13
+if [[ "${TARGETARCH}" == "arm64" ]]; then
+	curl -o /tmp/7zip.tar.xz -L https://www.7-zip.org/a/7z2409-linux-arm64.tar.xz
+else
+	curl -o /tmp/7zip.tar.xz -L https://www.7-zip.org/a/7z2409-linux-x64.tar.xz
+fi
 
 # container perms
 ####
