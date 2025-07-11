@@ -94,6 +94,12 @@ else
 	curl -o /tmp/7zip.tar.xz -L https://www.7-zip.org/a/7z2409-linux-x64.tar.xz
 fi
 
+# extract, remove tar file and move to /usr/bin
+tar -xvf /tmp/7zip.tar.xz -C /tmp
+rm /tmp/7zip.tar.xz
+mv /tmp/7zzs /usr/bin/7z
+chmod +x /usr/bin/7z
+
 # container perms
 ####
 
