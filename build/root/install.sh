@@ -103,6 +103,9 @@ github.sh --install-path "${install_path_7zip}" --github-owner 'ip7z' --github-r
 # extract archive
 tar -xvf "${install_path_7zip}" -C /usr/bin/ --no-same-owner --no-same-permissions --wildcards --no-anchored '7zz*' && rm "${install_path_7zip}"
 
+# hack as sabnzbd is looking for '7za' binary, 7zip git has '7zz' and '7zzs' binaries
+ln -fs /usr/bin/7zz /usr/bin/7za
+
 # python
 ####
 
